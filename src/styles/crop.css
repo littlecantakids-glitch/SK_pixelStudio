@@ -1,0 +1,11 @@
+/* ── Crop Overlay ────────────────────────────────────────────── */
+.crop-overlay {
+  z-index: 7;
+}
+.crop-overlay__dark {
+  transition: opacity 0.1s ease;
+}
+.crop-overlay__handle {
+  border-radius: 1px;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}

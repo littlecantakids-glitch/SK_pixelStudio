@@ -1,0 +1,12 @@
+/* ============================================================
+   Selection Overlay (Marching Ants)
+   ============================================================ */
+.selection-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* 오버레이는 줌 배율에 맞춰 슈퍼샘플링되므로 부드러운 스케일 사용
+     (pixelated 는 마칭 앤츠를 계단식으로 뭉개던 원인) */
+}

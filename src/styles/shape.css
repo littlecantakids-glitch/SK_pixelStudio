@@ -1,0 +1,86 @@
+/* ── Shape Tool 옵션바 — Fill/Stroke 스와치 ─────────────────── */
+.shapebar__swatch-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+}
+
+.shapebar__swatch {
+  position: relative;
+  width: 22px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background-image:
+    linear-gradient(45deg, #bcbcbc 25%, transparent 25%),
+    linear-gradient(-45deg, #bcbcbc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #bcbcbc 75%),
+    linear-gradient(-45deg, transparent 75%, #bcbcbc 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #d0d0d0;
+  padding: 0;
+}
+
+.shapebar__swatch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: inherit;
+}
+
+.shapebar__swatch--off {
+  background: #2a2a2a;
+}
+
+.shapebar__swatch--off::after {
+  content: none;
+}
+
+.shapebar__swatch > svg {
+  position: relative;
+  z-index: 1;
+  color: #e05a5a;
+}
+
+/* 스와치를 덮는 투명 color input (클릭 시 네이티브 피커) */
+.shapebar__color-input {
+  width: 18px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+.shapebar__color-input::-webkit-color-swatch-wrapper {
+  padding: 2px;
+}
+.shapebar__color-input::-webkit-color-swatch {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 3px;
+}
+
+/* ── Shape Properties Panel ─────────────────────────────────── */
+.shape-props__row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+}
+
+.shape-props__label {
+  width: 26px;
+  font-size: 11px;
+  color: #b8b8b8;
+}
+
+.props__input--sm {
+  width: 52px;
+}
+

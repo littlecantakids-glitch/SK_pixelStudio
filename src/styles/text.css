@@ -1,0 +1,241 @@
+/* ── In-canvas Type 편집 textarea ───────────────────────────── */
+.text-editor {
+  display: block;
+  box-sizing: content-box;
+  -webkit-font-smoothing: antialiased;
+}
+.text-editor::selection {
+  background: rgba(80, 130, 240, 0.35);
+}
+
+/* ── Options Bar — 색상 스와치 (Shape 스와치 재사용 + Text 전용) ── */
+.textbar__swatch {
+  width: 22px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  padding: 0;
+}
+.textbar__align-group {
+  display: inline-flex;
+  gap: 2px;
+}
+
+/* ── Character / Paragraph 플로팅 패널 ──────────────────────── */
+.type-panels {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  width: 232px;
+  background: #2b2b2b;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  z-index: 40;
+  font-size: 11px;
+  color: #d6d6d6;
+  user-select: none;
+}
+
+.type-panels__tabs {
+  display: flex;
+  border-bottom: 1px solid #1a1a1a;
+}
+.type-panels__tab {
+  flex: 1;
+  padding: 6px 8px;
+  background: #262626;
+  border: none;
+  border-right: 1px solid #1a1a1a;
+  color: #9a9a9a;
+  cursor: pointer;
+  font-size: 11px;
+}
+.type-panels__tab--active {
+  background: #333;
+  color: #fff;
+}
+.type-panels__close {
+  width: 26px;
+  background: #262626;
+  border: none;
+  color: #9a9a9a;
+  cursor: pointer;
+}
+
+.type-panels__body {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.type-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.type-row__full {
+  flex: 1;
+}
+.type-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex: 1;
+  background: #1f1f1f;
+  border: 1px solid #444;
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+.type-field svg {
+  color: #8a8a8a;
+  flex: none;
+}
+.type-field input,
+.type-field select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #e6e6e6;
+  font-size: 11px;
+  outline: none;
+}
+.type-field select {
+  cursor: pointer;
+}
+.type-select {
+  width: 100%;
+  background: #1f1f1f;
+  border: 1px solid #444;
+  border-radius: 3px;
+  color: #e6e6e6;
+  font-size: 11px;
+  padding: 3px 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.type-color {
+  width: 100%;
+  height: 22px;
+  padding: 0;
+  border: 1px solid #444;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.type-btn-group {
+  display: inline-flex;
+  gap: 2px;
+}
+.type-btn {
+  width: 26px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #1f1f1f;
+  border: 1px solid #444;
+  border-radius: 3px;
+  color: #c0c0c0;
+  cursor: pointer;
+}
+.type-btn--active {
+  background: #3a5a9a;
+  border-color: #4a6aba;
+  color: #fff;
+}
+.type-panels__section-title {
+  font-size: 10px;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 2px 0;
+}
+
+/* ── Warp Text 대화상자 ─────────────────────────────────────── */
+.warp-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+.warp-modal {
+  width: 320px;
+  background: #2b2b2b;
+  border: 1px solid #151515;
+  border-radius: 6px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  color: #e0e0e0;
+  font-size: 12px;
+}
+.warp-modal__title {
+  padding: 10px 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #1a1a1a;
+}
+.warp-modal__body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.warp-modal__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.warp-modal__row span {
+  width: 72px;
+}
+.warp-modal__row select {
+  flex: 1;
+  background: #1f1f1f;
+  border: 1px solid #444;
+  border-radius: 3px;
+  color: #e6e6e6;
+  padding: 4px 6px;
+}
+.warp-modal__slider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.warp-modal__slider span {
+  width: 72px;
+}
+.warp-modal__slider input {
+  flex: 1;
+}
+.warp-modal__slider b {
+  width: 44px;
+  text-align: right;
+  font-weight: 500;
+  color: #b8b8b8;
+}
+.warp-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid #1a1a1a;
+}
+.warp-modal__btn {
+  padding: 5px 14px;
+  background: #3a3a3a;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+.warp-modal__btn--primary {
+  background: #3a5a9a;
+  border-color: #4a6aba;
+  color: #fff;
+}

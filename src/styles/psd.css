@@ -1,0 +1,357 @@
+/* ============================================================
+   PSD Import Engine UI — 진행 대화상자 / 오류 대화상자 / 파일 아이콘
+   ============================================================ */
+
+/* ── Import 진행 대화상자 ───────────────────────────────── */
+.psd-progress-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.psd-progress {
+  width: 380px;
+  background: #262626;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.65);
+  color: #d4d4d4;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.psd-progress__titlebar {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: #1c1c1c;
+  border-bottom: 1px solid #000;
+  color: #e8e8e8;
+  font-size: 12px;
+}
+
+.psd-progress__body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.psd-progress__file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.psd-progress__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 12px;
+}
+
+.psd-progress__stage {
+  color: #a8a8a8;
+  font-size: 11px;
+  min-height: 14px;
+}
+
+.psd-progress__track {
+  height: 6px;
+  background: #3a3a3a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.psd-progress__fill {
+  height: 100%;
+  background: #2ea6ff;
+  border-radius: 3px;
+  transition: width 0.12s ease;
+}
+
+.psd-progress__pct {
+  align-self: flex-end;
+  font-size: 11px;
+  color: #8a8a8a;
+}
+
+/* ── Import 오류 대화상자 ───────────────────────────────── */
+.psd-error-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.psd-error {
+  width: 440px;
+  max-width: calc(100vw - 40px);
+  background: #262626;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.65);
+  color: #d4d4d4;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.psd-error__titlebar {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background: #1c1c1c;
+  border-bottom: 1px solid #000;
+  color: #e8e8e8;
+}
+
+.psd-error__body {
+  display: flex;
+  gap: 14px;
+  padding: 20px 20px 8px;
+}
+
+.psd-error__icon {
+  flex-shrink: 0;
+  color: #f0c22e;
+  margin-top: 2px;
+}
+
+.psd-error__text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.psd-error__message {
+  color: #e8e8e8;
+  line-height: 1.55;
+}
+
+.psd-error__file {
+  color: #8a8a8a;
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.psd-error__actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px 20px 16px;
+}
+
+.psd-error__ok {
+  min-width: 88px;
+  height: 26px;
+  border: 1px solid #0a5cad;
+  border-radius: 13px;
+  background: #1473e6;
+  color: #fff;
+  font-size: 12px;
+}
+
+.psd-error__ok:hover {
+  background: #2a83f0;
+}
+
+.psd-error__ok:focus-visible {
+  outline: 2px solid #2ea6ff;
+  outline-offset: 1px;
+}
+
+/* ── PSD 파일 아이콘 (최근 파일 / 진행 대화상자) ───────── */
+.psd-file-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 22px;
+  flex-shrink: 0;
+  background: #001e36;
+  border: 1px solid #31a8ff;
+  border-radius: 2px;
+  color: #31a8ff;
+}
+
+.psd-file-icon--large {
+  width: 34px;
+  height: 28px;
+}
+
+.psd-file-icon__ext {
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+  left: 0;
+  text-align: center;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  line-height: 1;
+  color: #31a8ff;
+  background: rgba(0, 30, 54, 0.92);
+}
+
+.psd-file-icon--large .psd-file-icon__ext {
+  font-size: 8px;
+}
+
+.psd-file-icon svg {
+  margin-bottom: 5px;
+}
+
+/* ── Composite Fallback 대화상자 ───────────────────────── */
+.psd-fallback {
+  width: 480px;
+}
+
+.psd-fallback__actions {
+  gap: 8px;
+}
+
+.psd-fallback__btn {
+  min-width: 88px;
+  height: 26px;
+  padding: 0 14px;
+  border: 1px solid #555;
+  border-radius: 13px;
+  background: #333;
+  color: #ddd;
+  font-size: 12px;
+}
+
+.psd-fallback__btn:hover {
+  background: #3e3e3e;
+  border-color: #777;
+}
+
+.psd-error__actions.psd-fallback__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ── PSD Import Pixel 비교 디버그 (Ctrl+Alt+D) ─────────── */
+.psd-diff-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.psd-diff {
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  background: #1e1e1e;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.7);
+  color: #d4d4d4;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.psd-diff--empty {
+  padding: 24px 32px;
+}
+
+.psd-diff__titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 34px;
+  padding: 0 10px 0 14px;
+  background: #161616;
+  border-bottom: 1px solid #000;
+  color: #e8e8e8;
+  white-space: nowrap;
+}
+
+.psd-diff__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: #aaa;
+}
+
+.psd-diff__close:hover {
+  background: #3a3a3a;
+  color: #fff;
+}
+
+.psd-diff__body {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  overflow: auto;
+}
+
+.psd-diff__pane {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.psd-diff__label {
+  font-size: 11px;
+  color: #9a9a9a;
+}
+
+.psd-diff__canvas {
+  max-width: 30vw;
+  max-height: 62vh;
+  border: 1px solid #000;
+  background:
+    repeating-conic-gradient(#3a3a3a 0% 25%, #2e2e2e 0% 50%) 0 0 / 14px 14px;
+  image-rendering: pixelated;
+}
+
+.psd-diff__hint {
+  padding: 0 14px 12px;
+  font-size: 11px;
+  color: #777;
+}
+
+/* ── Layer Panel — PSD Import 표식 ─────────────────────── */
+.layer-row__warn {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 4px;
+  color: #f0c22e;
+}
+
+.layer-row__clip {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: 4px;
+  color: #8ab8f0;
+}

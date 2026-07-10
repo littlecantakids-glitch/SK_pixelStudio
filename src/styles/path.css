@@ -1,0 +1,120 @@
+/* ── Paths Panel ─────────────────────────────────────────── */
+.paths {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.paths__list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2px 0;
+}
+
+.paths__row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--border-line);
+  cursor: default;
+}
+
+.paths__row:hover {
+  background: var(--bg-panel-2);
+}
+
+.paths__row--active {
+  background: var(--accent);
+}
+
+.paths__row--active .paths__name {
+  color: #fff;
+}
+
+.paths__eye {
+  width: 18px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.paths__thumb {
+  width: 46px;
+  height: 36px;
+  border: 1px solid #1c1c1c;
+  background: #2f2f2f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.paths__thumb-canvas {
+  display: block;
+}
+
+.paths__name {
+  flex: 1;
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.paths__rename {
+  flex: 1;
+  font-size: 11px;
+  height: 20px;
+  background: var(--input-bg);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  padding: 0 4px;
+}
+
+.paths__toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 6px;
+  border-top: 1px solid var(--border-line);
+  background: var(--bg-panel);
+}
+
+.paths__toolbar-gap {
+  flex: 1;
+}
+
+.paths__btn {
+  width: 26px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.paths__btn:hover {
+  background: var(--bg-panel-2);
+}
+
+.paths__btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* 옵션바 평범한 라벨 ("만들기:") */
+.optionsbar__label-plain {
+  font-size: 11px;
+  color: var(--text-dim);
+  padding: 0 2px;
+}

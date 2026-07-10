@@ -1,0 +1,217 @@
+/* ── Smart Object 레이어 썸네일 배지 (좌하단) ───────────────── */
+.layer-thumb--smart {
+  position: relative;
+}
+.layer-thumb__smart-badge {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  width: 10px;
+  height: 10px;
+  background: #2b6cd4;
+  border: 1px solid #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.4);
+}
+.layer-thumb__smart-badge::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 1px;
+}
+
+/* ── Smart Object 문서 탭 ───────────────────────────────────── */
+.canvas__tab--smart {
+  background: linear-gradient(180deg, #223148, #1c2636);
+}
+.canvas__tab--smart.canvas__tab--active {
+  background: linear-gradient(180deg, #2c436a, #263a56);
+}
+.canvas__tab-smart-icon {
+  color: #6aa2f0;
+  margin-right: 3px;
+  flex: none;
+}
+
+/* ── Smart Object 속성 패널 ─────────────────────────────────── */
+.so-props__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 4px;
+  font-size: 11px;
+}
+.so-props__key {
+  color: #9a9a9a;
+}
+.so-props__val {
+  color: #e2e2e2;
+}
+.so-props__val--path {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.so-props__btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 6px 8px;
+  margin: 3px 0;
+  background: #333;
+  border: 1px solid #454545;
+  border-radius: 4px;
+  color: #e2e2e2;
+  font-size: 11px;
+  cursor: pointer;
+}
+.so-props__btn:hover {
+  background: #3c3c3c;
+  border-color: #555;
+}
+.so-props__hint {
+  font-size: 10px;
+  color: #7a7a7a;
+  padding: 4px;
+}
+
+/* ── Smart Filter 트리 (Layer Panel) ────────────────────────── */
+.sf-tree {
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.sf-tree__head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  /* Smart Object 레이어 아래 1단계 들여쓰기 */
+  padding: 3px 6px 3px 28px;
+  font-size: 11px;
+  color: #c8c8c8;
+  position: relative;
+}
+.sf-tree__caret {
+  background: none;
+  border: none;
+  color: #b0b0b0;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+}
+.sf-tree__mask {
+  color: #cfcfcf;
+}
+.sf-tree__title {
+  flex: 1;
+}
+.sf-tree__add-wrap {
+  position: relative;
+}
+.sf-tree__add {
+  background: none;
+  border: none;
+  color: #a0a0a0;
+  cursor: pointer;
+  display: flex;
+  padding: 2px;
+  border-radius: 3px;
+}
+.sf-tree__add:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.sf-add-menu {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  z-index: 60;
+  background: #2b2b2b;
+  border: 1px solid #151515;
+  border-radius: 4px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  min-width: 150px;
+  padding: 3px;
+}
+.sf-add-menu__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 5px 8px;
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.sf-add-menu__item:hover {
+  background: #3a5a9a;
+}
+.sf-add-menu__item--stub {
+  color: #6a6a6a;
+  cursor: default;
+}
+.sf-add-menu__item--stub:hover {
+  background: none;
+}
+
+.sf-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* 스마트 필터 헤더 아래 한 단계 더 들여쓰기 */
+  padding: 3px 6px 3px 48px;
+  font-size: 11px;
+  color: #d0d0d0;
+  cursor: default;
+}
+.sf-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.sf-row--off {
+  opacity: 0.45;
+}
+.sf-row__eye {
+  background: none;
+  border: none;
+  color: #b0b0b0;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+.sf-row__icon {
+  color: #6aa2f0;
+}
+.sf-row__name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sf-row__op {
+  color: #8a8a8a;
+  font-size: 10px;
+}
+.sf-ctx-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
+.sf-ctx {
+  z-index: 91;
+}
+
+/* ── Smart Filter Dialog 숫자 입력 (Warp Modal 재사용) ────────── */
+.warp-modal__num {
+  width: 56px;
+  background: #1f1f1f;
+  border: 1px solid #444;
+  border-radius: 3px;
+  color: #e6e6e6;
+  padding: 2px 4px;
+  font-size: 11px;
+}

@@ -1,0 +1,223 @@
+/* ============================================================
+   Filter Dialog — Photoshop 스타일 다크 모달
+   ============================================================ */
+.filter-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-dialog {
+  background: #383838;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  color: #d6d6d6;
+  min-width: 380px;
+}
+
+.filter-dialog__title {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e8e8e8;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.filter-dialog__body {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+}
+
+.filter-dialog__left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Preview 영역 */
+.filter-dialog__preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.filter-dialog__preview-canvas {
+  border: 1px solid #1c1c1c;
+  background: #3a3a3a;
+  display: block;
+}
+
+.filter-dialog__zoom {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-dialog__zoom-btn {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #2b2b2b;
+  border: 1px solid #4a4a4a;
+  border-radius: 2px;
+  color: #d0d0d0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.filter-dialog__zoom-btn:hover {
+  background: #3d3d3d;
+}
+
+.filter-dialog__zoom-val {
+  font-size: 10px;
+  color: #9a9a9a;
+  min-width: 34px;
+  text-align: center;
+}
+
+/* 파라미터 */
+.filter-dialog__param {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 220px;
+}
+
+.filter-dialog__param-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filter-dialog__label {
+  font-size: 11px;
+}
+
+.filter-dialog__num {
+  width: 62px;
+  height: 20px;
+  margin-left: auto;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  color: #e8e8e8;
+  font-size: 11px;
+  padding: 0 4px;
+  text-align: right;
+}
+
+.filter-dialog__num:focus {
+  outline: none;
+  border-color: #2a7de1;
+}
+
+.filter-dialog__num::-webkit-outer-spin-button,
+.filter-dialog__num::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.filter-dialog__unit {
+  font-size: 10px;
+  color: var(--text-dim);
+  width: 24px;
+}
+
+/* 분포 라디오 그룹 */
+.filter-dialog__group {
+  border: 1px solid #4a4a4a;
+  border-radius: 3px;
+  padding: 8px 10px 6px;
+  position: relative;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-dialog__group-title {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: #383838;
+  padding: 0 4px;
+  font-size: 10px;
+  color: #9a9a9a;
+}
+
+.filter-dialog__radio,
+.filter-dialog__check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.filter-dialog__check--inline {
+  margin-top: 6px;
+}
+
+/* 우측 버튼 컬럼 */
+.filter-dialog__side {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 96px;
+}
+
+.filter-dialog__btn {
+  height: 24px;
+  background: #2b2b2b;
+  border: 1px solid #5a5a5a;
+  border-radius: 12px;
+  color: #e0e0e0;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.filter-dialog__btn:hover {
+  background: #3d3d3d;
+}
+
+.filter-dialog__btn--primary {
+  background: #2a7de1;
+  border-color: #2a7de1;
+  color: #fff;
+}
+
+.filter-dialog__btn--primary:hover {
+  background: #3c8bea;
+}
+
+/* Status Bar — 필터 상태 */
+.canvas__status-filter {
+  font-size: 11px;
+  color: #7ab8ff;
+  white-space: nowrap;
+}
+
+/* 상단 메뉴 서브메뉴 flyout */
+.menu-dropdown__row {
+  position: relative;
+}
+
+.menu-dropdown--sub {
+  position: absolute;
+  left: 100%;
+  top: -4px;
+  min-width: 180px;
+}

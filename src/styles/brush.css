@@ -1,0 +1,680 @@
+/* ============================================================
+   Brush Tool UI — Photoshop 스타일
+   (Options Bar / Preset Popup / Toolbar Flyout / Cursor)
+   ============================================================ */
+
+/* ── Brush Options Bar ─────────────────────────────────────── */
+.brushbar__field {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.brushbar__label {
+  font-size: 11px;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.brushbar__input {
+  width: 44px;
+  height: 20px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  color: #e8e8e8;
+  font-size: 11px;
+  padding: 0 4px;
+  text-align: right;
+}
+
+.brushbar__input:hover {
+  border-color: #5a5a5a;
+}
+
+.brushbar__input:focus {
+  outline: none;
+  border-color: #2a7de1;
+}
+
+/* number input 스핀 버튼 제거 (Photoshop처럼 깔끔하게) */
+.brushbar__input::-webkit-outer-spin-button,
+.brushbar__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.brushbar__unit {
+  font-size: 10px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.brushbar__select {
+  height: 20px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  color: #e8e8e8;
+  font-size: 11px;
+  padding: 0 2px;
+}
+
+.brushbar__select:hover {
+  border-color: #5a5a5a;
+}
+
+.brushbar__select:focus {
+  outline: none;
+  border-color: #2a7de1;
+}
+
+/* Brush Preset Button — 팁 미리보기 위, 크기 숫자 아래 (Photoshop 스택형) */
+.brushbar__preset {
+  display: flex;
+  align-items: stretch;
+  height: 34px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #e8e8e8;
+  cursor: pointer;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.brushbar__preset:hover {
+  background: #2a2a2a;
+  border-color: #454545;
+}
+
+.brushbar__preset--open {
+  background: #12253c;
+  border-color: #2a7de1;
+}
+
+.brushbar__preset-tip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 4px 0;
+}
+
+.brushbar__preset-tip canvas {
+  height: 20px !important;
+  width: 20px !important;
+}
+
+.brushbar__preset-size {
+  font-size: 9px;
+  line-height: 10px;
+  color: #b8b8b8;
+}
+
+.brushbar__preset-caretbox {
+  display: flex;
+  align-items: center;
+  padding: 0 3px;
+  border-left: 1px solid #3d3d3d;
+}
+
+/* 작은 삼각형 드롭다운 표시 */
+.brushbar__caret {
+  width: 0;
+  height: 0;
+  border-left: 3.5px solid transparent;
+  border-right: 3.5px solid transparent;
+  border-top: 4px solid #b8b8b8;
+}
+
+/* 값 입력 + ▾ 콤보 (불투명도/흐름/보정) */
+.brushbar__combo {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+}
+
+.brushbar__combo:hover {
+  border-color: #5a5a5a;
+}
+
+.brushbar__combo:focus-within {
+  border-color: #2a7de1;
+}
+
+.brushbar__input--combo {
+  width: 34px;
+  border: 0;
+  background: transparent;
+}
+
+.brushbar__input--combo:focus {
+  outline: none;
+}
+
+.brushbar__combo-unit {
+  font-size: 10px;
+  color: var(--text-dim);
+  padding-right: 2px;
+}
+
+.brushbar__combo-caret {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 100%;
+  border: 0;
+  border-left: 1px solid #3d3d3d;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.brushbar__combo-caret:hover,
+.brushbar__combo-caret--open {
+  background: #383838;
+}
+
+/* ▾ 클릭 시 열리는 슬라이더 팝다운 */
+.brushbar__slider-pop {
+  position: fixed;
+  z-index: 1000;
+  width: 150px;
+  background: #2b2b2b;
+  border: 1px solid #1a1a1a;
+  border-radius: 3px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+  padding: 7px 9px 3px;
+}
+
+.brushbar__slider-pop-value {
+  display: block;
+  font-size: 10px;
+  color: #b8b8b8;
+  margin-bottom: 2px;
+}
+
+.brushbar__angle-glyph {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.brushbar__select--wide {
+  min-width: 96px;
+}
+
+/* ── Brush Preset Popup ────────────────────────────────────── */
+.brush-popup {
+  position: fixed;
+  z-index: 1000;
+  width: 300px;
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+  background: #2b2b2b;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  padding: 10px;
+  color: #d6d6d6;
+}
+
+/* 헤더 — 좌: 팁 프리뷰, 우: 크기/경도, 사이드: 설정/추가 */
+.brush-popup__head {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.brush-popup__tipview {
+  flex-shrink: 0;
+  background: #1c1c1c;
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.brush-popup__head-controls {
+  flex: 1;
+  min-width: 0;
+}
+
+.brush-popup__head-side {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.brush-popup__tool-btn {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: #b8b8b8;
+  cursor: pointer;
+  padding: 0;
+}
+
+.brush-popup__tool-btn:hover {
+  background: #383838;
+  border-color: #4a4a4a;
+  color: #fff;
+}
+
+/* 하단 Stroke 미리보기 */
+.brush-popup__preview {
+  position: relative;
+  background: #1c1c1c;
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  margin-top: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.brush-popup__stroke {
+  width: 100%;
+}
+
+.brush-popup__slider-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brush-popup__label {
+  font-size: 11px;
+  width: 30px;
+  flex-shrink: 0;
+}
+
+.brush-popup__num {
+  width: 52px;
+  height: 20px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  color: #e8e8e8;
+  font-size: 11px;
+  padding: 0 4px;
+  text-align: right;
+  margin-left: auto;
+}
+
+.brush-popup__num:focus {
+  outline: none;
+  border-color: #2a7de1;
+}
+
+.brush-popup__num::-webkit-outer-spin-button,
+.brush-popup__num::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.brush-popup__unit {
+  font-size: 10px;
+  color: var(--text-dim);
+  width: 24px;
+}
+
+/* Photoshop식 슬라이더 — 트랙 아래 ▲ 삼각형 썸 */
+.brush-popup__slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  margin: 1px 0 5px;
+  background: transparent;
+}
+
+.brush-popup__slider::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #6a6a6a;
+  border-radius: 1px;
+}
+
+.brush-popup__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 8px;
+  margin-top: 1px;
+  background: #cfcfcf;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  cursor: pointer;
+  border: 0;
+}
+
+.brush-popup__slider::-webkit-slider-thumb:hover {
+  background: #ffffff;
+}
+
+.brush-popup__slider::-moz-range-track {
+  height: 2px;
+  background: #6a6a6a;
+  border-radius: 1px;
+}
+
+.brush-popup__slider::-moz-range-thumb {
+  width: 11px;
+  height: 8px;
+  background: #cfcfcf;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  cursor: pointer;
+  border: 0;
+  border-radius: 0;
+  transform: translateY(4px);
+}
+
+/* Eraser 확장 슬라이더 (간격/각도/원형율) */
+.brush-popup__ext-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brush-popup__ext-row .brush-popup__label {
+  width: 38px;
+}
+
+.brush-popup__slider--ext {
+  flex: 1;
+  margin: 0;
+}
+
+.brush-popup__ext-value {
+  font-size: 10px;
+  color: #9a9a9a;
+  width: 36px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* 검색 */
+.brush-popup__search {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  padding: 0 6px;
+  margin: 4px 0 6px;
+  color: #8f8f8f;
+}
+
+.brush-popup__search input {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  color: #e8e8e8;
+  font-size: 11px;
+  min-width: 0;
+}
+
+.brush-popup__search input:focus {
+  outline: none;
+}
+
+.brush-popup__search input::placeholder {
+  color: #6f6f6f;
+}
+
+/* 최근 사용 브러시 스트립 */
+.brush-popup__recent {
+  display: flex;
+  gap: 3px;
+  padding: 4px 2px 6px;
+  border-bottom: 1px solid #3a3a3a;
+  margin-bottom: 2px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+/* 폴더 리스트 */
+.brush-popup__list {
+  flex: 1;
+  min-height: 90px;
+  overflow-y: auto;
+  margin: 0 -10px;
+  padding: 2px 10px 6px;
+}
+
+.brush-popup__folder-head {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  height: 24px;
+  background: transparent;
+  border: 0;
+  color: #cfcfcf;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.brush-popup__folder-head:hover {
+  background: #383838;
+}
+
+.brush-popup__folder-icon {
+  color: #9a9a9a;
+  flex-shrink: 0;
+}
+
+.brush-popup__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 3px 2px 8px 18px;
+}
+
+/* Preset 타일 — 팁 썸네일 + 크기 숫자 (이름은 툴팁) */
+.brush-popup__preset {
+  position: relative;
+  width: 40px;
+  padding: 2px 2px 1px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #bdbdbd;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brush-popup__preset:hover {
+  background: #303030;
+  border-color: #565656;
+}
+
+.brush-popup__preset--active {
+  border-color: #2a7de1;
+  background: #12253c;
+}
+
+.brush-popup__preset-size {
+  font-size: 9px;
+  color: #8f8f8f;
+}
+
+/* ── Toolbar Brush Flyout ──────────────────────────────────── */
+.brush-flyout {
+  position: fixed;
+  z-index: 1000;
+  min-width: 200px;
+  background: #2b2b2b;
+  border: 1px solid #1a1a1a;
+  border-radius: 3px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+  padding: 3px;
+}
+
+.brush-flyout__item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  height: 26px;
+  padding: 0 8px 0 4px;
+  background: transparent;
+  border: 0;
+  border-radius: 2px;
+  color: #d6d6d6;
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.brush-flyout__item:hover {
+  background: #2a7de1;
+  color: #fff;
+}
+
+.brush-flyout__item--active {
+  color: #fff;
+}
+
+.brush-flyout__item--stub {
+  color: #9a9a9a;
+}
+
+.brush-flyout__check {
+  width: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Photoshop처럼 활성 도구 앞 작은 사각형 마커 */
+.brush-flyout__marker {
+  width: 5px;
+  height: 5px;
+  background: currentColor;
+  display: block;
+}
+
+.brush-flyout__label {
+  flex: 1;
+}
+
+.brush-flyout__shortcut {
+  color: #8f8f8f;
+  font-size: 10px;
+}
+
+.brush-flyout__item:hover .brush-flyout__shortcut {
+  color: #dbe9ff;
+}
+
+/* ── Brush Cursor (Viewport) ───────────────────────────────── */
+/* 원형 커서가 표시될 때는 시스템 커서 숨김 (inline style 보다 우선) */
+.canvas__viewport[data-brush-cursor='none'] {
+  cursor: none !important;
+}
+
+.canvas__viewport[data-brush-cursor='locked'] {
+  cursor: not-allowed !important;
+}
+
+/* Clone Stamp + Alt — Source 지정 십자 커서 */
+.canvas__viewport[data-brush-cursor='crosshair'] {
+  cursor: crosshair !important;
+}
+
+/* Clone Source (Overlay) 설정 팝업 */
+.optionsbar__icon-btn--active {
+  background: #2a4a6a;
+  color: #dbe9ff;
+}
+
+.clone-source-pop {
+  position: absolute;
+  top: 34px;
+  right: 8px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 190px;
+  padding: 10px 11px;
+  background: #2b2b2b;
+  border: 1px solid #1a1a1a;
+  border-radius: 5px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.clone-source-pop__title {
+  font-size: 11px;
+  font-weight: 600;
+  color: #cfcfcf;
+  margin-bottom: 1px;
+}
+
+.clone-source-pop__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.clone-source-pop__row select {
+  flex: 0 0 auto;
+}
+
+/* Status Bar — Brush/Eraser 상태 */
+.canvas__status-paint {
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.canvas__status-paint--locked {
+  color: #e08a3a;
+}
+
+/* 미구현 스텁 아이콘 (에어브러시/압력) — 어둡게 표시 */
+.optionsbar__icon-btn--stub {
+  opacity: 0.55;
+}
+
+.optionsbar__icon-btn--stub:hover {
+  opacity: 0.85;
+}
+
+/* (구) 옵션바 소품 — 다른 도구에서 재사용 */
+.optionsbar__swatch-mini {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #1c1c1c;
+  box-shadow: 0 0 0 1px #7a7a7a;
+  flex-shrink: 0;
+}
+
+.optionsbar__hint {
+  color: var(--text-dim);
+  font-size: 10px;
+  margin-left: 4px;
+}

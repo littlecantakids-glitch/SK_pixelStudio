@@ -1,0 +1,141 @@
+/* ============================================================
+   Save As / Unsaved Changes 대화상자
+   ============================================================ */
+.sa-dialog {
+  width: 420px;
+  max-width: calc(100vw - 32px);
+  background: #262626;
+  border: 1px solid #000;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  color: #d4d4d4;
+  font-size: 12px;
+}
+
+.sa-dialog__body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sa-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sa-field__label {
+  font-size: 11px;
+  color: #9a9a9a;
+}
+
+.sa-field__input,
+.sa-field__select {
+  height: 30px;
+  background: #383838;
+  border: 1px solid #565656;
+  color: #e6e6e6;
+  font-size: 12px;
+  padding: 0 8px;
+}
+
+.sa-field__input:focus,
+.sa-field__select:focus {
+  outline: none;
+  border-color: #2a7de1;
+}
+
+.sa-quality {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sa-quality__slider {
+  flex: 1;
+  accent-color: #2a7de1;
+}
+
+.sa-quality__num {
+  width: 56px;
+  height: 28px;
+  background: #383838;
+  border: 1px solid #565656;
+  color: #e6e6e6;
+  font-size: 12px;
+  padding: 0 6px;
+  text-align: right;
+}
+
+.sa-check {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: #d0d0d0;
+}
+
+.sa-check input {
+  width: 14px;
+  height: 14px;
+}
+
+.sa-preview {
+  margin-top: 2px;
+  padding: 10px 12px;
+  background: #1f1f1f;
+  border: 1px solid #3a3a3a;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sa-preview__row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+}
+
+.sa-preview__k {
+  color: #8f8f8f;
+}
+
+.sa-preview__v {
+  color: #dcdcdc;
+}
+
+/* 저장되지 않은 변경 대화상자 */
+.unsaved-dialog {
+  width: 420px;
+  max-width: calc(100vw - 32px);
+  background: #2b2b2b;
+  border: 1px solid #000;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+  color: #d4d4d4;
+}
+
+.unsaved-dialog__body {
+  padding: 22px 20px 8px;
+}
+
+.unsaved-dialog__title {
+  font-size: 14px;
+  color: #ededed;
+  margin-bottom: 8px;
+}
+
+.unsaved-dialog__msg {
+  font-size: 12px;
+  color: #b4b4b4;
+  line-height: 1.6;
+}
+
+.unsaved-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 16px 20px 18px;
+}

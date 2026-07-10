@@ -1,0 +1,81 @@
+/* ============================================================
+   History Panel (Photoshop 작업 내역)
+   ============================================================ */
+.panel__tabs-spacer {
+  flex: 1;
+}
+
+.history__menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  border: 0;
+  background: transparent;
+  color: var(--text-dim);
+}
+
+.history__menu-btn:hover {
+  color: var(--text-bright);
+}
+
+.history__list {
+  /* 고정 높이 + 내부 스크롤 — 항목이 많아져도 패널이 커지지 않음 */
+  height: 180px;
+  overflow-y: auto;
+  border-top: 1px solid var(--border-line);
+}
+
+.history-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+  height: 24px;
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  border-bottom: 1px solid #333;
+  text-align: left;
+}
+
+.history-row:hover {
+  background: var(--bg-panel-2);
+}
+
+.history-row--active {
+  background: #4a5a70;
+  color: #fff;
+}
+
+.history-row--dimmed {
+  color: #6f6f6f;
+}
+
+.history-row__icon {
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.history-row__name {
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.history__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 26px;
+  padding: 0 8px;
+  border-top: 1px solid var(--border-dark);
+  background: #3a3a3a;
+}
+
+.history__count {
+  font-size: 10px;
+  color: var(--text-dim);
+}

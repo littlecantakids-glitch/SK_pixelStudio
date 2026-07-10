@@ -1,0 +1,23 @@
+/* ============================================================
+   Move Tool — Bounding Box / 상태바 좌표
+   ============================================================ */
+.bbox {
+  position: absolute;
+  border-style: solid;
+  border-color: #2ea6ff;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.bbox__handle {
+  position: absolute;
+  background: #ffffff;
+  border-style: solid;
+  border-color: #2ea6ff;
+  box-sizing: border-box;
+}
+
+.canvas__status-xy {
+  color: var(--text-dim);
+  min-width: 96px;
+}

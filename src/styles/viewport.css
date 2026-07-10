@@ -1,0 +1,61 @@
+/* ============================================================
+   Viewport 카메라 / 무한 작업공간 / 줌 컨트롤
+   ============================================================ */
+.canvas__viewport {
+  position: absolute;
+  inset: 24px 0 0 0;
+  overflow: hidden;
+  background: var(--bg-workspace);
+  touch-action: none;
+}
+
+.canvas__camera {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.canvas__viewport .canvas__doc {
+  position: relative;
+}
+
+.canvas__viewport > .canvas__empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 상태바 줌 컨트롤 */
+.canvas__zoomctl {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.canvas__zoombtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 16px;
+  border: 0;
+  background: transparent;
+  color: var(--text-dim);
+  border-radius: 2px;
+}
+
+.canvas__zoombtn:hover {
+  background: #565656;
+  color: var(--text-bright);
+}
+
+.canvas__zoomctl .canvas__zoom {
+  min-width: 48px;
+  text-align: center;
+  color: var(--text);
+}

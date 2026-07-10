@@ -1,0 +1,39 @@
+/* ── Paste Flash Animation ───────────────────────────────── */
+.paste-flash {
+  position: absolute;
+  pointer-events: none;
+  border: 1px solid rgba(90, 170, 255, 0.9);
+  background: rgba(90, 170, 255, 0.18);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+  animation: paste-flash-anim 0.45s ease-out forwards;
+  z-index: 5;
+}
+
+@keyframes paste-flash-anim {
+  0% {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* ── Status Bar — Clipboard 동작 메시지 ──────────────────── */
+.canvas__status-clip {
+  font-size: 11px;
+  color: #7fb0e8;
+  white-space: nowrap;
+}
+
+/* ── DebugStats 구분선 ───────────────────────────────────── */
+.debug-stats__sep {
+  height: 1px;
+  margin: 4px 0;
+  background: rgba(255, 255, 255, 0.15);
+}

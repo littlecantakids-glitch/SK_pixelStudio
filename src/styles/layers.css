@@ -1,0 +1,365 @@
+/* ============================================================
+   Layer Panel (Photoshop 스타일)
+   ============================================================ */
+.layers__list {
+  border-top: 1px solid var(--border-line);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.layer-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 36px;
+  padding: 0 8px 0 6px;
+  border-bottom: 1px solid var(--border-line);
+  color: var(--text);
+  cursor: default;
+  user-select: none;
+  transition: background 0.08s ease;
+}
+
+.layer-row:hover {
+  background: var(--bg-panel-2);
+}
+
+.layer-row--selected {
+  background: #4a5a70;
+}
+
+.layer-row--selected:hover {
+  background: #526480;
+}
+
+.layer-row__eye {
+  width: 18px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.layer-row__collapse {
+  width: 14px;
+  border: 0;
+  background: transparent;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.layer-thumb {
+  position: relative;
+  width: 36px;
+  height: 28px;
+  flex-shrink: 0;
+  border: 1px solid #1c1c1c;
+  background-image: linear-gradient(45deg, #b0b0b0 25%, transparent 25%),
+    linear-gradient(-45deg, #b0b0b0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #b0b0b0 75%),
+    linear-gradient(-45deg, transparent 75%, #b0b0b0 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+  background-color: #fff;
+  display: block;
+  cursor: pointer;
+  transition: outline-color 0.06s ease;
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+}
+
+.layer-thumb:hover {
+  outline-color: #8a8a8a;
+}
+
+/* Photoshop처럼 선택된 썸네일(Bitmap 또는 Mask)은 흰색 테두리 */
+.layer-thumb--active,
+.layer-thumb--active:hover {
+  outline-color: #ffffff;
+}
+
+.layer-thumb canvas {
+  display: block;
+}
+
+/* Mask 썸네일 — Grayscale, 체커보드 없이 흰 배경 */
+.layer-thumb--mask {
+  background-image: none;
+  background-color: #fff;
+}
+
+/* 비활성화된 마스크의 빨간 X (Photoshop 스타일) */
+.layer-thumb__x {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top right, transparent 46%, #e03a3a 47%, #e03a3a 53%, transparent 54%),
+    linear-gradient(to bottom right, transparent 46%, #e03a3a 47%, #e03a3a 53%, transparent 54%);
+}
+
+/* Bitmap ↔ Mask 링크 아이콘 */
+.layer-row__masklink {
+  width: 12px;
+  height: 28px;
+  padding: 0;
+  margin: 0 -2px;
+  border: 0;
+  background: transparent;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.layer-row__masklink:hover {
+  color: var(--text-bright, #fff);
+}
+
+.layer-thumb--group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #444;
+  color: #d0d0d0;
+}
+
+.layer-row__namewrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.layer-row__name {
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.layer-row__rename {
+  width: 100%;
+  height: 20px;
+  background: #1f1f1f;
+  border: 1px solid #2a7de1;
+  color: #fff;
+  font-size: 11px;
+  padding: 0 4px;
+}
+
+.layer-row__rename:focus {
+  outline: none;
+}
+
+.layer-row__badge {
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.layer-row__lock {
+  width: 18px;
+  border: 0;
+  background: transparent;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.layer-row__lock--on {
+  color: var(--text-bright);
+}
+
+.layer-ctx {
+  color: var(--dropdown-text);
+}
+
+/* 마스크 추가 버튼 상태 */
+.layers__fbtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.layers__fbtn--active {
+  color: var(--text-bright, #fff);
+}
+
+/* 잠그기 행 — 활성(ON) 잠금 버튼 하이라이트 */
+.layers__lock--on {
+  background: #4a5a70;
+  border-radius: 2px;
+  color: #ffffff;
+}
+
+/* ── Adjustment Layer ─────────────────────────────────────── */
+/* 조정 레이어 썸네일 — 특수 아이콘 (Photoshop 스타일) */
+.layer-thumb--adj {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: none;
+  background-color: #3a3a3a;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+
+.layer-thumb--adj:hover {
+  background-color: #454545;
+}
+
+/* Create New Fill or Adjustment Layer — 반원 아이콘 ◐ */
+.layers__adj-icon {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Adjustment Properties Panel */
+.adjprops__layername {
+  margin-left: auto;
+  font-size: 10px;
+  color: var(--text-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 110px;
+}
+
+.adjprops__body {
+  padding: 8px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.adjprops__control {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.adjprops__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.adjprops__label {
+  font-size: 11px;
+  color: var(--text);
+}
+
+.adjprops__num {
+  width: 56px;
+  height: 20px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  color: #e8e8e8;
+  font-size: 11px;
+  padding: 0 4px;
+  text-align: right;
+}
+
+.adjprops__num:focus {
+  outline: none;
+  border-color: #2a7de1;
+}
+
+.adjprops__num::-webkit-outer-spin-button,
+.adjprops__num::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Photoshop식 슬라이더 — 트랙 아래 ▲ 삼각형 썸 */
+.adjprops__slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 14px;
+  background: transparent;
+}
+
+.adjprops__slider::-webkit-slider-runnable-track {
+  height: 2px;
+  background: #6a6a6a;
+  border-radius: 1px;
+}
+
+.adjprops__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 8px;
+  margin-top: 1px;
+  background: #cfcfcf;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  cursor: pointer;
+  border: 0;
+}
+
+.adjprops__slider::-webkit-slider-thumb:hover {
+  background: #ffffff;
+}
+
+.adjprops__slider::-moz-range-track {
+  height: 2px;
+  background: #6a6a6a;
+}
+
+.adjprops__slider::-moz-range-thumb {
+  width: 11px;
+  height: 8px;
+  background: #cfcfcf;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  border: 0;
+  border-radius: 0;
+  transform: translateY(4px);
+  cursor: pointer;
+}
+
+.adjprops__reset {
+  margin-top: 4px;
+  height: 22px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  color: #d0d0d0;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.adjprops__reset:hover {
+  background: #2a2a2a;
+  border-color: #5a5a5a;
+}
+
+.adjustments__btn--stub {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Status Bar — 마스크 편집 상태 */
+.canvas__status-mask {
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.canvas__status-mask--editing {
+  color: #7ab8ff;
+}

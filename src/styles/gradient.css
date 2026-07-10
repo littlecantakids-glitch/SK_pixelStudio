@@ -1,0 +1,391 @@
+/* ============================================================
+   Gradient Tool — Photoshop 스타일
+   (Options Bar / Preset Picker / Gradient Editor)
+   ============================================================ */
+
+/* 공통 스트립 (체커보드 위 그라디언트) */
+.grad-strip {
+  display: inline-block;
+  border: 1px solid #1c1c1c;
+  background-image: linear-gradient(45deg, #b0b0b0 25%, transparent 25%),
+    linear-gradient(-45deg, #b0b0b0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #b0b0b0 75%),
+    linear-gradient(-45deg, transparent 75%, #b0b0b0 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+  background-color: #fff;
+  flex-shrink: 0;
+}
+
+/* ── Options Bar ───────────────────────────────────────────── */
+.gradbar__preset {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 0 0 4px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+  gap: 4px;
+}
+
+.gradbar__preset:hover {
+  border-color: #5a5a5a;
+}
+
+.gradbar__preset--open {
+  background: #12253c;
+  border-color: #2a7de1;
+}
+
+/* 5종 Type 글리프 — CSS 그라디언트로 미니 아이콘 */
+.gradbar__type-glyph {
+  width: 14px;
+  height: 12px;
+  display: block;
+  border: 1px solid #6a6a6a;
+  border-radius: 1px;
+}
+
+.gradbar__type-glyph--linear {
+  background: linear-gradient(90deg, #e8e8e8, #2b2b2b);
+}
+
+.gradbar__type-glyph--radial {
+  background: radial-gradient(circle at 50% 50%, #e8e8e8, #2b2b2b);
+}
+
+.gradbar__type-glyph--angle {
+  background: conic-gradient(from 0deg at 50% 50%, #e8e8e8, #2b2b2b, #e8e8e8);
+}
+
+.gradbar__type-glyph--reflected {
+  background: linear-gradient(90deg, #2b2b2b, #e8e8e8 50%, #2b2b2b);
+}
+
+.gradbar__type-glyph--diamond {
+  background: conic-gradient(
+    from 45deg at 50% 50%,
+    #2b2b2b 0deg,
+    #e8e8e8 90deg,
+    #2b2b2b 180deg,
+    #e8e8e8 270deg,
+    #2b2b2b 360deg
+  );
+}
+
+/* ── Preset Picker 팝업 ────────────────────────────────────── */
+.grad-picker {
+  position: fixed;
+  z-index: 1000;
+  width: 240px;
+  max-height: 340px;
+  display: flex;
+  flex-direction: column;
+  background: #2b2b2b;
+  border: 1px solid #1a1a1a;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  color: #d6d6d6;
+  padding: 8px;
+}
+
+.grad-picker__title {
+  font-size: 11px;
+  color: #9a9a9a;
+  margin-bottom: 6px;
+}
+
+.grad-picker__list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.grad-picker__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #cfcfcf;
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.grad-picker__item:hover {
+  background: #383838;
+  border-color: #4a4a4a;
+}
+
+.grad-picker__item--active {
+  border-color: #2a7de1;
+  background: #12253c;
+}
+
+.grad-picker__name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.grad-picker__footer {
+  border-top: 1px solid #3a3a3a;
+  margin-top: 6px;
+  padding-top: 6px;
+}
+
+.grad-picker__edit {
+  width: 100%;
+  height: 22px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  color: #d0d0d0;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.grad-picker__edit:hover {
+  background: #2a2a2a;
+}
+
+/* ── Gradient Editor 모달 ──────────────────────────────────── */
+.grad-editor {
+  background: #383838;
+  border: 1px solid #1a1a1a;
+  border-radius: 6px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6);
+  color: #d6d6d6;
+  width: 430px;
+}
+
+.grad-editor__body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.grad-editor__section-title {
+  font-size: 10px;
+  color: #9a9a9a;
+}
+
+.grad-editor__presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px;
+  background: #2b2b2b;
+  border: 1px solid #1f1f1f;
+  border-radius: 3px;
+  max-height: 76px;
+  overflow-y: auto;
+}
+
+.grad-editor__preset {
+  padding: 2px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.grad-editor__preset:hover {
+  border-color: #5a5a5a;
+}
+
+.grad-editor__name-row,
+.grad-editor__stop-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.grad-editor__label {
+  font-size: 11px;
+  color: #cfcfcf;
+}
+
+.grad-editor__name {
+  flex: 1;
+  height: 20px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  color: #e8e8e8;
+  font-size: 11px;
+  padding: 0 5px;
+}
+
+.grad-editor__name:focus {
+  outline: none;
+  border-color: #2a7de1;
+}
+
+/* Gradient Bar + Stops */
+.grad-editor__bar-wrap {
+  position: relative;
+  padding: 14px 0;
+  margin: 2px 6px;
+}
+
+.grad-editor__bar {
+  position: relative;
+  cursor: copy;
+}
+
+.grad-editor__bar .grad-strip {
+  display: block;
+}
+
+.grad-editor__stops {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 14px;
+}
+
+.grad-editor__stops--top {
+  top: 0;
+}
+
+.grad-editor__stops--bottom {
+  bottom: 0;
+}
+
+/* Opacity Stop (위, 아래로 뾰족) */
+.grad-editor__opstop {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 11px;
+  height: 13px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: ew-resize;
+}
+
+.grad-editor__opstop-fill {
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin: 0 auto;
+  background: #111;
+  border: 1px solid #cfcfcf;
+  clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%);
+}
+
+.grad-editor__opstop--sel .grad-editor__opstop-fill {
+  border-color: #2a7de1;
+  outline: 1px solid #2a7de1;
+}
+
+/* Color Stop (아래, 위로 뾰족) */
+.grad-editor__cstop {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 11px;
+  height: 13px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  cursor: ew-resize;
+}
+
+.grad-editor__cstop-fill {
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin: 0 auto;
+  border: 1px solid #cfcfcf;
+  clip-path: polygon(50% 0, 100% 45%, 100% 100%, 0 100%, 0 45%);
+}
+
+.grad-editor__cstop--sel .grad-editor__cstop-fill {
+  border-color: #fff;
+  outline: 1px solid #2a7de1;
+}
+
+/* Midpoint ◇ */
+.grad-editor__mid {
+  position: absolute;
+  bottom: -5px;
+  transform: translateX(-50%) rotate(45deg);
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  background: #cfcfcf;
+  border: 1px solid #1a1a1a;
+  cursor: ew-resize;
+}
+
+.grad-editor__mid:hover {
+  background: #fff;
+}
+
+.grad-editor__color {
+  width: 34px;
+  height: 22px;
+  padding: 1px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.grad-editor__num {
+  width: 48px;
+  height: 20px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 2px;
+  color: #e8e8e8;
+  font-size: 11px;
+  padding: 0 4px;
+  text-align: right;
+}
+
+.grad-editor__num:focus {
+  outline: none;
+  border-color: #2a7de1;
+}
+
+.grad-editor__num::-webkit-outer-spin-button,
+.grad-editor__num::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.grad-editor__unit {
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+.grad-editor__hint {
+  font-size: 10px;
+  color: #8a8a8a;
+}
+
+.grad-editor__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid #2a2a2a;
+}
+
+.grad-editor__footer .filter-dialog__btn {
+  min-width: 72px;
+}
